@@ -1,0 +1,3 @@
+created expo app using: npx create-expo-app todo
+starting app using: npx expo start
+colour scheme: #E8EAED, #000, #888, #55BCF6, #191970, #A6CCEC, #95D8C7, #B6D7B9, #E0CFB4, #F7D6C1
