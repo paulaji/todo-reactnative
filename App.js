@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -31,24 +31,22 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>today's tasks</Text>
+        <Text style={styles.sectionTitle}>Today's Tasks</Text>
         <Text style={styles.sectionSubTitle}>
           Time's ticking, no more tricking! Get things done, have some fun.
         </Text>
         <Text style={styles.note}>
-          note: once you complete your tasks, press on the task to delete it
+          Note: Once you complete your tasks, press on the task to delete it.
         </Text>
-        <View style={styles.items}>
-          {taskItems.map((item, index) => {
-            return (
+        <ScrollView style={styles.itemsContainer}>
+          <View style={styles.items}>
+            {taskItems.map((item, index) => (
               <TouchableOpacity key={index} onPress={() => completeTask(index)}>
                 <Task text={item} />
               </TouchableOpacity>
-            );
-          })}
-          {/* <Task text={"edupidi task"} />
-          <Task text={"muttan task aan bhai vaanam meele aan bhai"} /> */}
-        </View>
+            ))}
+          </View>
+        </ScrollView>
       </View>
       {/* write a task */}
       <KeyboardAvoidingView
@@ -57,10 +55,10 @@ export default function App() {
       >
         <TextInput
           style={styles.input}
-          placeholder="enter your task..."
+          placeholder="Enter your task..."
           value={task}
           onChangeText={(text) => setTask(text)}
-        ></TextInput>
+        />
         <TouchableOpacity onPress={() => handleAddTask()}>
           <View style={styles.addWrapper}>
             <Text style={styles.addText}>+</Text>
@@ -79,6 +77,7 @@ const styles = StyleSheet.create({
   tasksWrapper: {
     paddingTop: 80,
     paddingHorizontal: 20,
+    flex: 1,
   },
   sectionTitle: {
     color: "#000",
@@ -95,6 +94,9 @@ const styles = StyleSheet.create({
     color: "#888",
     fontSize: 10,
     marginTop: 3,
+  },
+  itemsContainer: {
+    flex: 1,
   },
   items: {
     marginTop: 50,
